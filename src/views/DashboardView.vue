@@ -15,9 +15,7 @@
             </div>
           </div>
 
-          <div class="mt-4">
-            <router-link to="/products" class="btn btn-primary">Lihat Daftar Produk</router-link>
-          </div>
+          
           
         </div>
       </div>

@@ -1,9 +1,12 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav
+    v-if="isLoggedIn"
+    class="navbar navbar-expand-lg navbar-dark bg-dark"
+  >
     <div class="container-fluid">
-      <router-link class="navbar-brand" to="/dashboard"
-        >Manufaktur App</router-link
-      >
+      <router-link class="navbar-brand" to="/dashboard">
+        Manufaktur App
+      </router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -46,9 +49,11 @@
               >Laporan Produksi</router-link
             >
           </li>
-          <li class="nav-item">
+          <li class="nav-item"
+            v-if="userRole === 'Manager' || userRole === 'Staff_PPIC'"
+          >
             <router-link class="nav-link" to="/inventaris"
-              >Invetaris</router-link
+              >Inventaris</router-link
             >
           </li>
           <li class="nav-item">
@@ -75,20 +80,23 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
+
 const userName = ref(localStorage.getItem("name") || "Pengguna");
-const userEmail = ref(localStorage.getItem("email") || "");
 const userRole = ref(localStorage.getItem("role") || "");
+const token = ref(localStorage.getItem("token") || null);
+
+// reactive check
+const isLoggedIn = computed(() => !!token.value);
 
 const logout = () => {
   localStorage.clear();
+  userName.value = "Pengguna";
+  userRole.value = "";
+  token.value = null; // update ref biar reactive
   router.push({ name: "login" });
 };
 </script>
-
-<style scoped>
-/* Gaya khusus untuk komponen ini */
-</style>
