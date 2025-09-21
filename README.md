@@ -64,3 +64,14 @@ Berikut adalah contoh tangkapan layar dari beberapa halaman utama:
 ## Link Repositori Terkait
 
 * **Backend (Laravel)**: [https://github.com/username/manufaktur-backend-v10](https://github.com/username/manufaktur-backend-v10)
+
+...
+* **Halaman Login**
+    ![Halaman Login]https://github.com/fpendii/manufaktur-frontend-vue/blob/main/screenshot/login.png
+
+* **Halaman Rencana Produksi**
+    ![Halaman Rencana Produksi](URL_GAMBAR_RENCANA_PRODUKSI_DISINI)
+
+* **Halaman Order Produksi**
+    ![Halaman Order Produksi](URL_GAMBAR_ORDER_PRODUKSI_DISINI)
+...
