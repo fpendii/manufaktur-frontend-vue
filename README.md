@@ -1,7 +1,3 @@
-
-### `README.md` Repositori Frontend (Vue.js)
-
-```markdown
 # Manufaktur-Frontend-Vue
 
 Proyek ini adalah bagian frontend dari sistem manufaktur yang dibangun dengan framework **Vue.js 3** dan menggunakan **Vue Router** untuk navigasi. Frontend ini berinteraksi dengan API backend yang dibuat dengan Laravel.
