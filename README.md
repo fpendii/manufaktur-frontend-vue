@@ -20,10 +20,10 @@ Berikut adalah contoh tangkapan layar dari beberapa halaman utama:
     ![Halaman Login](screenshot/login.png)
 
 * **Halaman Rencana Produksi**
-   ![Halaman Rencana Produksi](screenshot/order-produksi.png)
+   ![Halaman Rencana Produksi](screenshot/order-produksi-v2.png)
 
 * **Halaman Order Produksi**
-   ![Halaman Order Produksi](screenshot/rencana-produksi.png)
+   ![Halaman Order Produksi](screenshot/rencana-produksi-v2.png)
 
 ## Informasi Login
 
