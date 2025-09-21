@@ -51,7 +51,8 @@ Berikut adalah contoh tangkapan layar dari beberapa halaman utama:
     ```javascript
     // src/main.js
     import axios from 'axios';
-    axios.defaults.baseURL = 'http://localhost:8000/api'; // Pastikan ini benar
+    axios.defaults.baseURL = 'http://localhost:8000/api'; /
+    *** NOTE : Pastikan backend berjalan di url 'http://localhost:8000', karna jika tidak banyak halaman front end yang akan error
     ```
 
 4.  **Jalankan Server**:
