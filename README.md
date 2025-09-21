@@ -66,13 +66,4 @@ Berikut adalah contoh tangkapan layar dari beberapa halaman utama:
 
 * **Backend (Laravel)**: [https://github.com/username/manufaktur-backend-v10](https://github.com/username/manufaktur-backend-v10)
 
-...
-* **Halaman Login**
-    
-
-* **Halaman Rencana Produksi**
-    ![Halaman Rencana Produksi](URL_GAMBAR_RENCANA_PRODUKSI_DISINI)
-
-* **Halaman Order Produksi**
-    ![Halaman Order Produksi](URL_GAMBAR_ORDER_PRODUKSI_DISINI)
-...
+\
