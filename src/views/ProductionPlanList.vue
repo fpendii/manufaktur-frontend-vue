@@ -53,7 +53,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import axios from 'axios';
+import axios from "@/plugins/axios";
 
 const plans = ref([]);
 const loading = ref(true);
@@ -62,7 +62,7 @@ const error = ref(null);
 const fetchPlans = async () => {
   try {
     const token = localStorage.getItem('token');
-    const response = await axios.get('http://localhost:8000/api/production-plans', {
+    const response = await axios.get('/api/production-plans', {
       headers: { Authorization: `Bearer ${token}` },
     });
     // Filter rencana yang statusnya 'menunggu persetujuan'

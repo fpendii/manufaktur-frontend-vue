@@ -61,7 +61,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import axios from 'axios';
+import axios from "@/plugins/axios";
 import { useRouter } from 'vue-router'; // Impor useRouter
 
 const products = ref([]);
@@ -79,7 +79,7 @@ const router = useRouter(); // Inisialisasi router
 const fetchProducts = async () => {
   try {
     const token = localStorage.getItem('token');
-    const response = await axios.get('http://localhost:8000/api/products', {
+    const response = await axios.get('/products', {
       headers: { Authorization: `Bearer ${token}` },
     });
     products.value = response.data.products;
@@ -93,7 +93,7 @@ const fetchProducts = async () => {
 const submitPlan = async () => {
   try {
     const token = localStorage.getItem('token');
-    const response = await axios.post('http://localhost:8000/api/production-plans', form.value, {
+    const response = await axios.post('/api/production-plans', form.value, {
       headers: { Authorization: `Bearer ${token}` },
     });
     

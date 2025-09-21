@@ -28,7 +28,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import axios from 'axios';
+import axios from "@/plugins/axios";
 
 const products = ref([]);
 const loading = ref(true);
@@ -42,7 +42,7 @@ const fetchProducts = async () => {
     }
     
     // Perbaikan di URL
-    const response = await axios.get('http://localhost:8000/api/products', {
+    const response = await axios.get('/api/products', {
       headers: {
         Authorization: `Bearer ${token}`
       }

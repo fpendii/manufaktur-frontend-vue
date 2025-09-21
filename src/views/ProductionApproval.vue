@@ -26,20 +26,29 @@
               <td>{{ plan.due_date }}</td>
               <td>{{ plan.user.name }}</td>
               <td>
-                <span class="badge" :class="{
-                  'bg-warning': plan.status === 'menunggu persetujuan',
-                  'bg-success': plan.status === 'disetujui',
-                  'bg-danger': plan.status === 'ditolak'
-                }">
+                <span
+                  class="badge"
+                  :class="{
+                    'bg-warning': plan.status === 'menunggu persetujuan',
+                    'bg-success': plan.status === 'disetujui',
+                    'bg-danger': plan.status === 'ditolak',
+                  }"
+                >
                   {{ plan.status }}
                 </span>
               </td>
               <td>
                 <div v-if="plan.status === 'menunggu persetujuan'">
-                  <button @click="approvePlan(plan.id)" class="btn btn-success btn-sm me-2">
+                  <button
+                    @click="approvePlan(plan.id)"
+                    class="btn btn-success btn-sm me-2"
+                  >
                     Setuju
                   </button>
-                  <button @click="rejectPlan(plan.id)" class="btn btn-danger btn-sm">
+                  <button
+                    @click="rejectPlan(plan.id)"
+                    class="btn btn-danger btn-sm"
+                  >
                     Tolak
                   </button>
                 </div>
@@ -56,8 +65,8 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import axios from 'axios';
+import { ref, onMounted } from "vue";
+import axios from "@/plugins/axios";
 
 const plans = ref([]);
 const loading = ref(true);
@@ -65,15 +74,17 @@ const error = ref(null);
 
 const fetchPlans = async () => {
   try {
-    const token = localStorage.getItem('token');
-    const response = await axios.get('http://localhost:8000/api/production-plans', {
+    const token = localStorage.getItem("token");
+   const response = await axios.get('/api/production-plans', {
       headers: { Authorization: `Bearer ${token}` },
     });
     // Filter rencana yang statusnya 'menunggu persetujuan'
-    plans.value = response.data.plans.filter(plan => plan.status === 'menunggu persetujuan');
+    plans.value = response.data.plans.filter(
+      (plan) => plan.status === "menunggu persetujuan"
+    );
   } catch (err) {
-    console.error('Gagal memuat rencana:', err);
-    error.value = 'Gagal memuat daftar rencana produksi.';
+    console.error("Gagal memuat rencana:", err);
+    error.value = "Gagal memuat daftar rencana produksi.";
   } finally {
     loading.value = false;
   }
@@ -81,29 +92,37 @@ const fetchPlans = async () => {
 
 const approvePlan = async (id) => {
   try {
-    const token = localStorage.getItem('token');
-    await axios.put(`http://localhost:8000/api/production-plans/${id}/approve`, {}, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const token = localStorage.getItem("token");
+    await axios.put(
+      `http://localhost:8000/api/production-plans/${id}/approve`,
+      {},
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
     // Muat ulang data setelah berhasil
     fetchPlans();
   } catch (err) {
-    console.error('Gagal menyetujui rencana:', err);
-    alert('Gagal menyetujui rencana. Silakan coba lagi.');
+    console.error("Gagal menyetujui rencana:", err);
+    alert("Gagal menyetujui rencana. Silakan coba lagi.");
   }
 };
 
 const rejectPlan = async (id) => {
   try {
-    const token = localStorage.getItem('token');
-    await axios.put(`http://localhost:8000/api/production-plans/${id}/reject`, {}, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const token = localStorage.getItem("token");
+    await axios.put(
+      `http://localhost:8000/api/production-plans/${id}/reject`,
+      {},
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
     // Muat ulang data setelah berhasil
     fetchPlans();
   } catch (err) {
-    console.error('Gagal menolak rencana:', err);
-    alert('Gagal menolak rencana. Silakan coba lagi.');
+    console.error("Gagal menolak rencana:", err);
+    alert("Gagal menolak rencana. Silakan coba lagi.");
   }
 };
 

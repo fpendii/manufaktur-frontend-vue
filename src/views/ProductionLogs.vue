@@ -45,7 +45,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import axios from 'axios';
+import axios from "@/plugins/axios";
 
 const logs = ref([]);
 const loading = ref(true);
@@ -54,7 +54,7 @@ const error = ref(null);
 const fetchLogs = async () => {
   try {
     const token = localStorage.getItem('token');
-    const response = await axios.get('http://localhost:8000/api/production-logs', {
+    const response = await axios.get('/api/production-logs', {
       headers: { Authorization: `Bearer ${token}` },
     });
     logs.value = response.data.logs;

@@ -62,12 +62,12 @@ Gunakan kredensial berikut untuk login dan menguji fungsionalitas aplikasi:
     ```
 
 3.  **Konfigurasi API**:
-    * Buka file `src/main.js` atau file konfigurasi `axios` Anda. Pastikan baseURL mengarah ke API Laravel.
+    * Buka file `axios` di folder src/plugins/axios.js Anda. Pastikan baseURL mengarah ke API Laravel.
     ```javascript
-    // src/main.js
-    import axios from 'axios';
-    axios.defaults.baseURL = 'http://localhost:8000/api'; /
-    *** NOTE : Pastikan backend berjalan di url 'http://localhost:8000', karna jika tidak banyak halaman front end yang akan error
+    // src/plugins/axios.js
+    import axios from "@/plugins/axios";
+    axios.defaults.baseURL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
+
     ```
 
 4.  **Jalankan Server**:

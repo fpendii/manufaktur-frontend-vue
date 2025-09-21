@@ -89,7 +89,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import axios from 'axios';
+import axios from "@/plugins/axios";
 
 const orders = ref([]);
 const loading = ref(true);
@@ -119,7 +119,7 @@ const fetchOrders = async () => {
 const startOrder = async (id) => {
   try {
     const token = localStorage.getItem('token');
-    await axios.put(`http://localhost:8000/api/production-orders/${id}/start`, {}, {
+    await axios.put(`/api/production-orders/${id}/start`, {}, {
       headers: { Authorization: `Bearer ${token}` },
     });
     fetchOrders(); // Muat ulang data
