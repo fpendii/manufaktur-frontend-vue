@@ -17,17 +17,18 @@ Proyek ini adalah bagian frontend dari sistem manufaktur yang dibangun dengan fr
 
 ## Pratinjau Tampilan
 
+**(Maaf jika tampilannya masih berantakan, karna pertama kali mencoba membuat front end menggunakan vue.js)**
 Berikut adalah contoh tangkapan layar dari beberapa halaman utama:
 
 * **Halaman Login**
-    
+    https://github.com/fpendii/manufaktur-frontend-vue/blob/main/screenshot/login.png
 
 * **Halaman Rencana Produksi**
-    
+    https://github.com/fpendii/manufaktur-frontend-vue/blob/main/screenshot/order-produksi.png
 
 * **Halaman Order Produksi**
+    https://github.com/fpendii/manufaktur-frontend-vue/blob/main/screenshot/rencana-produksi.png
     
-
 ## Persyaratan Sistem
 
 * Node.js (LTS)
@@ -67,7 +68,7 @@ Berikut adalah contoh tangkapan layar dari beberapa halaman utama:
 
 ...
 * **Halaman Login**
-    ![Halaman Login]https://github.com/fpendii/manufaktur-frontend-vue/blob/main/screenshot/login.png
+    
 
 * **Halaman Rencana Produksi**
     ![Halaman Rencana Produksi](URL_GAMBAR_RENCANA_PRODUKSI_DISINI)
