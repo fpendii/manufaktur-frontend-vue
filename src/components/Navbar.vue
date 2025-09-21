@@ -1,5 +1,9 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+  <!-- Navbar hanya tampil jika login -->
+  <nav
+    v-if="isLoggedIn"
+    class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm"
+  >
     <div class="container-fluid">
       <!-- Brand -->
       <router-link class="navbar-brand d-flex align-items-center" to="/dashboard">
@@ -21,45 +25,50 @@
       </button>
 
       <!-- Menu -->
-      <div class="collapse navbar-collapse" id="navbarNav" v-if="isLoggedIn">
+      <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item" v-if="userRole === 'Manager' || userRole === 'Staff_PPIC'">
-            <router-link class="nav-link" to="/products">
-              <i class="bi bi-box-seam me-1"></i> Produk
-            </router-link>
-          </li>
-          <li class="nav-item" v-if="userRole === 'Staff_PPIC'">
-            <router-link class="nav-link" to="/rencana-produksi">
-              <i class="bi bi-calendar-check me-1"></i> Rencana Produksi
-            </router-link>
-          </li>
-          <li class="nav-item" v-if="userRole === 'Manager'">
-            <router-link class="nav-link" to="/persetujuan-produksi">
-              <i class="bi bi-check2-circle me-1"></i> Persetujuan
-            </router-link>
-          </li>
-          <li class="nav-item" v-if="userRole === 'Staff_Produksi'">
-            <router-link class="nav-link" to="/order-produksi">
-              <i class="bi bi-cart-check me-1"></i> Order Produksi
-            </router-link>
-          </li>
-          <li class="nav-item" v-if="userRole === 'Manager' || userRole === 'Staff_PPIC'">
-            <router-link class="nav-link" to="/laporan-produksi">
-              <i class="bi bi-clipboard-data me-1"></i> Laporan
-            </router-link>
-          </li>
-          <li class="nav-item"
-            v-if="userRole === 'Manager' || userRole === 'Staff_PPIC'"
-          >
-            <router-link class="nav-link" to="/inventaris">
-              <i class="bi bi-box2-heart me-1"></i> Inventaris
-            </router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/log-produksi">
-              <i class="bi bi-journal-text me-1"></i> Log Produksi
-            </router-link>
-          </li>
+  <router-link class="nav-link" to="/products" active-class="active">
+    <i class="bi bi-box-seam me-1"></i> Produk
+  </router-link>
+</li>
+
+<li class="nav-item" v-if="userRole === 'Staff_PPIC'">
+  <router-link class="nav-link" to="/rencana-produksi" active-class="active">
+    <i class="bi bi-calendar-check me-1"></i> Rencana Produksi
+  </router-link>
+</li>
+
+<li class="nav-item" v-if="userRole === 'Manager'">
+  <router-link class="nav-link" to="/persetujuan-produksi" active-class="active">
+    <i class="bi bi-check2-circle me-1"></i> Persetujuan
+  </router-link>
+</li>
+
+<li class="nav-item" v-if="userRole === 'Staff_Produksi'">
+  <router-link class="nav-link" to="/order-produksi" active-class="active">
+    <i class="bi bi-cart-check me-1"></i> Order Produksi
+  </router-link>
+</li>
+
+<li class="nav-item" v-if="userRole === 'Manager' || userRole === 'Staff_PPIC'">
+  <router-link class="nav-link" to="/laporan-produksi" active-class="active">
+    <i class="bi bi-clipboard-data me-1"></i> Laporan
+  </router-link>
+</li>
+
+<li class="nav-item" v-if="userRole === 'Manager' || userRole === 'Staff_PPIC'">
+  <router-link class="nav-link" to="/inventaris" active-class="active">
+    <i class="bi bi-box2-heart me-1"></i> Inventaris
+  </router-link>
+</li>
+
+<li class="nav-item">
+  <router-link class="nav-link" to="/log-produksi" active-class="active">
+    <i class="bi bi-journal-text me-1"></i> Log Produksi
+  </router-link>
+</li>
+
         </ul>
 
         <!-- User Info -->
@@ -78,44 +87,41 @@
     </div>
   </nav>
 </template>
-
 <script setup>
-import { ref, computed } from "vue";
-import { useRouter } from "vue-router";
+import { ref, computed, onMounted, watch } from "vue";
+import { useRouter, useRoute } from "vue-router";
 
 const router = useRouter();
+const route = useRoute();
 
-const userName = ref(localStorage.getItem("name") || "Pengguna");
-const userRole = ref(localStorage.getItem("role") || "");
-const token = ref(localStorage.getItem("token") || null);
+const userName = ref("Pengguna");
+const userRole = ref("");
+const token = ref(null);
 
-// Reactive check
 const isLoggedIn = computed(() => !!token.value);
+
+// Sync dari localStorage saat mount
+const syncAuth = () => {
+  token.value = localStorage.getItem("token") || null;
+  userName.value = localStorage.getItem("name") || "Pengguna";
+  userRole.value = localStorage.getItem("role") || "";
+};
+
+onMounted(() => {
+  syncAuth();
+});
+
+// Re-sync setiap kali route berubah
+watch(
+  () => route.fullPath,
+  () => {
+    syncAuth();
+  }
+);
 
 const logout = () => {
   localStorage.clear();
-  userName.value = "Pengguna";
-  userRole.value = "";
-  token.value = null;
+  syncAuth();
   router.push({ name: "login" });
 };
 </script>
-
-<style scoped>
-/* Hover */
-.navbar-nav .nav-link {
-  transition: all 0.2s ease-in-out;
-}
-.navbar-nav .nav-link:hover {
-  background-color: rgba(255, 255, 255, 0.15);
-  border-radius: 6px;
-}
-
-/* Active (Vue Router auto add class) */
-.router-link-active {
-  font-weight: bold;
-  color: #fff !important;
-  background-color: rgba(255, 255, 255, 0.25);
-  border-radius: 6px;
-}
-</style>
