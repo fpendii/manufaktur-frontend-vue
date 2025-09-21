@@ -65,9 +65,10 @@ const fetchPlans = async () => {
     const response = await axios.get('http://localhost:8000/api/production-plans', {
       headers: { Authorization: `Bearer ${token}` },
     });
-    plans.value = response.data.plans; // Sesuaikan dengan key 'plans'
+    // Filter rencana yang statusnya 'menunggu persetujuan'
+    plans.value = response.data.plans.filter(plan => plan.status === 'menunggu persetujuan');
   } catch (err) {
-    console.error('Error fetching plans:', err);
+    console.error('Gagal memuat rencana:', err);
     error.value = 'Gagal memuat daftar rencana produksi.';
   } finally {
     loading.value = false;
