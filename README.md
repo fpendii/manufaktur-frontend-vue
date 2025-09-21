@@ -1,7 +1,3 @@
-
-### `README.md` Repositori Frontend (Vue.js)
-
-```markdown
 # Manufaktur-Frontend-Vue
 
 Proyek ini adalah bagian frontend dari sistem manufaktur yang dibangun dengan framework **Vue.js 3** dan menggunakan **Vue Router** untuk navigasi. Frontend ini berinteraksi dengan API backend yang dibuat dengan Laravel.
@@ -17,17 +13,18 @@ Proyek ini adalah bagian frontend dari sistem manufaktur yang dibangun dengan fr
 
 ## Pratinjau Tampilan
 
+**(Maaf jika tampilannya masih berantakan, karna pertama kali mencoba membuat front end menggunakan vue.js)**
 Berikut adalah contoh tangkapan layar dari beberapa halaman utama:
 
 * **Halaman Login**
-    
+    https://github.com/fpendii/manufaktur-frontend-vue/blob/main/screenshot/login.png
 
 * **Halaman Rencana Produksi**
-    
+    https://github.com/fpendii/manufaktur-frontend-vue/blob/main/screenshot/order-produksi.png
 
 * **Halaman Order Produksi**
+    https://github.com/fpendii/manufaktur-frontend-vue/blob/main/screenshot/rencana-produksi.png
     
-
 ## Persyaratan Sistem
 
 * Node.js (LTS)
@@ -37,13 +34,14 @@ Berikut adalah contoh tangkapan layar dari beberapa halaman utama:
 
 1.  **Kloning Repositori**:
     ```bash
-    git clone https://github.com/username/manufaktur-frontend-vue.git
+    git clone https://github.com/fpendii/manufaktur-frontend-vue.git
     cd manufaktur-frontend-vue
     ```
 
 2.  **Instalasi Dependensi**:
     ```bash
     npm install
+    npm install axios
     ```
 
 3.  **Konfigurasi API**:
@@ -63,15 +61,5 @@ Berikut adalah contoh tangkapan layar dari beberapa halaman utama:
 
 ## Link Repositori Terkait
 
-* **Backend (Laravel)**: [https://github.com/username/manufaktur-backend-v10](https://github.com/username/manufaktur-backend-v10)
-
-...
-* **Halaman Login**
-    ![Halaman Login]https://github.com/fpendii/manufaktur-frontend-vue/blob/main/screenshot/login.png
-
-* **Halaman Rencana Produksi**
-    ![Halaman Rencana Produksi](URL_GAMBAR_RENCANA_PRODUKSI_DISINI)
-
-* **Halaman Order Produksi**
-    ![Halaman Order Produksi](URL_GAMBAR_ORDER_PRODUKSI_DISINI)
-...
+* **Backend (Laravel)**: https://github.com/fpendii/manufaktur-backend-v10.git
+\
