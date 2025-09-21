@@ -24,6 +24,23 @@ Berikut adalah contoh tangkapan layar dari beberapa halaman utama:
 
 * **Halaman Order Produksi**
    ![Halaman Order Produksi](screenshot/rencana-produksi.png)
+
+## Informasi Login
+
+Gunakan kredensial berikut untuk login dan menguji fungsionalitas aplikasi:
+
+* **Manajer**:
+    * Email: `manager@gmail.com`
+    * Password: `password`
+
+* **Staff PPIC**:
+    * Email: `ppic@gmail.com`
+    * Password: `password`
+
+* **Staff Produksi**:
+    * Email: `produksi@gmail.com`
+    * Password: `password`
+
     
 ## Persyaratan Sistem
 
