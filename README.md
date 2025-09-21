@@ -17,7 +17,7 @@ Proyek ini adalah bagian frontend dari sistem manufaktur yang dibangun dengan fr
 Berikut adalah contoh tangkapan layar dari beberapa halaman utama:
 
 * **Halaman Login**
-    ![Halaman Login](https://github.com/fpendi/manufaktur-frontend-vue/raw/main/screenshot/login.png)
+    ![Halaman Login](screenshot/login.png)
 
 * **Halaman Rencana Produksi**
     https://github.com/fpendii/manufaktur-frontend-vue/blob/main/screenshot/order-produksi.png
