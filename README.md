@@ -38,13 +38,14 @@ Berikut adalah contoh tangkapan layar dari beberapa halaman utama:
 
 1.  **Kloning Repositori**:
     ```bash
-    git clone https://github.com/username/manufaktur-frontend-vue.git
+    git clone https://github.com/fpendii/manufaktur-frontend-vue.git
     cd manufaktur-frontend-vue
     ```
 
 2.  **Instalasi Dependensi**:
     ```bash
     npm install
+    npm install axios
     ```
 
 3.  **Konfigurasi API**:
@@ -64,6 +65,5 @@ Berikut adalah contoh tangkapan layar dari beberapa halaman utama:
 
 ## Link Repositori Terkait
 
-* **Backend (Laravel)**: [https://github.com/username/manufaktur-backend-v10](https://github.com/username/manufaktur-backend-v10)
-
+* **Backend (Laravel)**: https://github.com/fpendii/manufaktur-backend-v10.git
 \
