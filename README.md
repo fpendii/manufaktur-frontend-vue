@@ -1,29 +1,65 @@
-# manufactur-frontend
 
-This template should help get you started developing with Vue 3 in Vite.
+### `README.md` Repositori Frontend (Vue.js)
 
-## Recommended IDE Setup
+```markdown
+# Manufaktur-Frontend-Vue
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Proyek ini adalah bagian frontend dari sistem manufaktur yang dibangun dengan framework **Vue.js 3** dan menggunakan **Vue Router** untuk navigasi. Frontend ini berinteraksi dengan API backend yang dibuat dengan Laravel.
 
-## Customize configuration
+## Fitur Utama
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+* **Login**: Halaman login untuk pengguna.
+* **Rencana Produksi**: Halaman untuk Staff PPIC membuat rencana produksi.
+* **Order Produksi**: Halaman untuk Staff Produksi melihat dan mengelola order.
+* **Laporan Produksi**: Halaman untuk Manajer dan Staff PPIC melihat laporan.
+* **Log Produksi**: Halaman untuk melihat riwayat perubahan status setiap order.
+* **Inventaris**: Halaman untuk melihat stok barang jadi di gudang.
 
-## Project Setup
+## Pratinjau Tampilan
 
-```sh
-npm install
-```
+Berikut adalah contoh tangkapan layar dari beberapa halaman utama:
 
-### Compile and Hot-Reload for Development
+* **Halaman Login**
+    
 
-```sh
-npm run dev
-```
+* **Halaman Rencana Produksi**
+    
 
-### Compile and Minify for Production
+* **Halaman Order Produksi**
+    
 
-```sh
-npm run build
-```
+## Persyaratan Sistem
+
+* Node.js (LTS)
+* npm atau yarn
+
+## Cara Menjalankan Proyek
+
+1.  **Kloning Repositori**:
+    ```bash
+    git clone https://github.com/username/manufaktur-frontend-vue.git
+    cd manufaktur-frontend-vue
+    ```
+
+2.  **Instalasi Dependensi**:
+    ```bash
+    npm install
+    ```
+
+3.  **Konfigurasi API**:
+    * Buka file `src/main.js` atau file konfigurasi `axios` Anda. Pastikan baseURL mengarah ke API Laravel.
+    ```javascript
+    // src/main.js
+    import axios from 'axios';
+    axios.defaults.baseURL = 'http://localhost:8000/api'; // Pastikan ini benar
+    ```
+
+4.  **Jalankan Server**:
+    ```bash
+    npm run dev
+    ```
+    Aplikasi akan berjalan di `http://localhost:5173` atau port lain yang tersedia.
+
+## Link Repositori Terkait
+
+* **Backend (Laravel)**: [https://github.com/username/manufaktur-backend-v10](https://github.com/username/manufaktur-backend-v10)
