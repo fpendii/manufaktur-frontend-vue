@@ -1,65 +1,102 @@
 <template>
-  <div>
-    <div class="container mt-5">
-      <h2 class="text-center mb-4">Persetujuan Rencana Produksi</h2>
-      <div v-if="loading" class="text-center">Memuat rencana...</div>
-      <div v-if="error" class="alert alert-danger">{{ error }}</div>
+  <div class="container mt-4">
+    <!-- Header -->
+    <div class="text d-flex justify-content-between align-items-center mb-4">
+      <h2 class="fw-bold text-primary">
+        <i class="bi bi-clipboard-check me-2"></i> Persetujuan Rencana Produksi
+      </h2>
+    </div>
 
-      <div v-if="plans.length > 0" class="table-responsive">
-        <table class="table table-striped table-bordered">
-          <thead>
+    <!-- Loading -->
+    <div v-if="loading" class="text-center my-5">
+      <div class="spinner-border text-primary" role="status"></div>
+      <p class="mt-2">Memuat rencana produksi...</p>
+    </div>
+
+    <!-- Error -->
+    <div v-if="error" class="alert alert-danger">
+      <i class="bi bi-exclamation-triangle me-1"></i> {{ error }}
+    </div>
+
+    <!-- Data Tabel -->
+    <div v-if="plans.length > 0" class="card shadow-sm border-0">
+      <div class="card-body">
+        <table class="table table-hover align-middle">
+          <thead class="table-light">
             <tr>
               <th>ID Rencana</th>
               <th>Produk</th>
-              <th>Jumlah</th>
+              <th class="text-center">Jumlah</th>
               <th>Tanggal Jatuh Tempo</th>
               <th>Dibuat Oleh</th>
               <th>Status</th>
-              <th>Aksi</th>
+              <th class="text-center">Aksi</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="plan in plans" :key="plan.id">
-              <td>{{ plan.id }}</td>
-              <td>{{ plan.product.product_name }}</td>
-              <td>{{ plan.quantity }}</td>
-              <td>{{ plan.due_date }}</td>
-              <td>{{ plan.user.name }}</td>
+             <tr v-for="(plan, index) in plans" :key="plan.id">
+    <!-- Nomor urut -->
+    <td>{{ index + 1 }}</td>
+              <td class="fw-medium">
+                <i class="bi bi-box-seam text-primary me-1"></i>
+                {{ plan.product.product_name }}
+              </td>
+              <td class="text-center">{{ plan.quantity }}</td>
+              <td>
+                <i class="bi bi-calendar-event me-1 text-muted"></i>
+                {{ plan.due_date }}
+              </td>
+              <td>
+                <i class="bi bi-person-circle me-1 text-secondary"></i>
+                {{ plan.user.name }}
+              </td>
               <td>
                 <span
-                  class="badge"
+                  class="badge px-3 py-2"
                   :class="{
-                    'bg-warning': plan.status === 'menunggu persetujuan',
+                    'bg-warning text-dark': plan.status === 'menunggu persetujuan',
                     'bg-success': plan.status === 'disetujui',
-                    'bg-danger': plan.status === 'ditolak',
+                    'bg-danger': plan.status === 'ditolak'
                   }"
                 >
+                  <i
+                    class="bi"
+                    :class="{
+                      'bi-hourglass-split': plan.status === 'menunggu persetujuan',
+                      'bi-check-circle': plan.status === 'disetujui',
+                      'bi-x-circle': plan.status === 'ditolak'
+                    }"
+                  ></i>
                   {{ plan.status }}
                 </span>
               </td>
-              <td>
+              <td class="text-center">
                 <div v-if="plan.status === 'menunggu persetujuan'">
                   <button
                     @click="approvePlan(plan.id)"
-                    class="btn btn-success btn-sm me-2"
+                    class="btn btn-sm btn-success me-2"
                   >
-                    Setuju
+                    <i class="bi bi-check-lg"></i>
                   </button>
                   <button
                     @click="rejectPlan(plan.id)"
-                    class="btn btn-danger btn-sm"
+                    class="btn btn-sm btn-danger"
                   >
-                    Tolak
+                    <i class="bi bi-x-lg"></i>
                   </button>
                 </div>
+                <div v-else class="text-muted">-</div>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
-      <div v-else-if="!loading" class="alert alert-info text-center">
-        Tidak ada rencana produksi yang menunggu persetujuan.
-      </div>
+    </div>
+
+    <!-- Jika kosong -->
+    <div v-else-if="!loading" class="alert alert-info text-center">
+      <i class="bi bi-info-circle me-1"></i>
+      Tidak ada rencana produksi yang menunggu persetujuan.
     </div>
   </div>
 </template>
@@ -75,10 +112,9 @@ const error = ref(null);
 const fetchPlans = async () => {
   try {
     const token = localStorage.getItem("token");
-   const response = await axios.get('/api/production-plans', {
+    const response = await axios.get("/api/production-plans", {
       headers: { Authorization: `Bearer ${token}` },
     });
-    // Filter rencana yang statusnya 'menunggu persetujuan'
     plans.value = response.data.plans.filter(
       (plan) => plan.status === "menunggu persetujuan"
     );
@@ -93,14 +129,9 @@ const fetchPlans = async () => {
 const approvePlan = async (id) => {
   try {
     const token = localStorage.getItem("token");
-    await axios.put(
-      `http://localhost:8000/api/production-plans/${id}/approve`,
-      {},
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
-    // Muat ulang data setelah berhasil
+    await axios.put(`/api/production-plans/${id}/approve`, {}, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
     fetchPlans();
   } catch (err) {
     console.error("Gagal menyetujui rencana:", err);
@@ -111,14 +142,9 @@ const approvePlan = async (id) => {
 const rejectPlan = async (id) => {
   try {
     const token = localStorage.getItem("token");
-    await axios.put(
-      `http://localhost:8000/api/production-plans/${id}/reject`,
-      {},
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
-    // Muat ulang data setelah berhasil
+    await axios.put(`/api/production-plans/${id}/reject`, {}, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
     fetchPlans();
   } catch (err) {
     console.error("Gagal menolak rencana:", err);
